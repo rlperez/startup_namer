@@ -53,13 +53,13 @@ class NameDatabase {
         id: maps[i]['id'], name: maps[i]['name'], isFavorite: true)).first;
   }
 
-  static Future<NameSuggestion> getFavoriteByName(String name) async {
+  static Future<bool> isFavoriteByName(String name) async {
     final db = await NameDatabase.db();
     final List<Map<String, dynamic>> maps = await db.query('favorite_names',
         where: "name = ?", whereArgs: [name], limit: 1);
 
-    return List.generate(1, (i) => NameSuggestion(
-        id: maps[i]['id'], name: maps[i]['name'], isFavorite: true)).first;
+    return List.generate(maps.length, (i) => NameSuggestion(
+        id: maps[i]['id'], name: maps[i]['name'], isFavorite: true)).isNotEmpty;
   }
 
   static Future<void> deleteFavorite(int id) async {
