@@ -8,7 +8,7 @@ class NameDatabase {
     await database.execute("""CREATE TABLE favorite_names(
         id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
         name TEXT UNIQUE,
-        is_favorite BOOLEAN,
+        is_favorite BOOLEAN DEFAULT TRUE,
         createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
       )
       """);
