@@ -7,7 +7,7 @@ class NameDatabase {
   static Future<void> _createTables(sql.Database database) async {
     await database.execute("""CREATE TABLE favorite_names(
         id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-        name TEXT,
+        name TEXT UNIQUE,
         is_favorite BOOLEAN,
         createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
       )
